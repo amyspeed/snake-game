@@ -1,6 +1,7 @@
 html {
   background-image: url('galaxy.jpg');
   background-size: cover;
+  font-family: sans-serif;
 }
 
 .game-container {
@@ -69,4 +70,24 @@ html {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+h1 {
+  color: rgb(255, 240, 154);
+  font-size: 40px;
+}
+
+p {
+  font-size: 25px;
+}
+
+button {
+  background: linear-gradient(45deg, rgb(194, 0, 178), rgb(0, 82, 175));
+  color: white;
+  width: 250px;
+  border-radius: 5px;
+  height: 50px;
+  font-size: 30px;
+  margin-top: 25px;
+  border: none;
 }

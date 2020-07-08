@@ -5,7 +5,7 @@ const GameOver = (props) => {
     return (
         <div className="game-over-container">
             <h1>Game Over...</h1>
-            <p>Your snake {props.problem}! Snake length: {props.length}</p>
+            <p>Your space snake <b>{props.problem}</b>! Length: <b>{props.length}</b></p>
             <button onClick={(e) => props.startNewGame(e)}>New Game</button>
         </div>
     )
