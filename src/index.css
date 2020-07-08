@@ -59,7 +59,7 @@ html {
 .game-over-container {
   position: fixed;
   z-index: 3;
-  background-color: rgba(0, 0, 0, 0.74);
+  background-color: rgba(0, 0, 0, 0.842);
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -70,11 +70,18 @@ html {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
 }
 
 h1 {
   color: rgb(255, 240, 154);
   font-size: 40px;
+}
+
+span {
+  color: rgb(255, 0, 234);
+  font-size: 28px;
+  font-weight: bold;
 }
 
 p {
@@ -84,10 +91,41 @@ p {
 button {
   background: linear-gradient(45deg, rgb(194, 0, 178), rgb(0, 82, 175));
   color: white;
-  width: 250px;
   border-radius: 5px;
-  height: 50px;
   font-size: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  margin: 2px;
+}
+
+.new-game-button {
+  height: 50px;
   margin-top: 25px;
-  border: none;
+  width: 250px;
+}
+
+.button-container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.arrow-container {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.up-down-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.arrow-buttons {
+  width: 50px;
+  height: 50px;
 }

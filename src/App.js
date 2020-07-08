@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Snake from './Snake';
 import Food from './Food';
 import GameOver from './GameOver';
+import ArrowButtons from './ArrowButtons';
 
 const getRandomCoordinates = () => {
   let min = 1;
@@ -44,7 +45,11 @@ class App extends Component {
 
   onkeydown = (e) => {
     e = e || window.event;
-    switch(e.keyCode) {
+    this.setDirection(e.keyCode);
+  }
+
+  setDirection(keyCode) {
+    switch(keyCode) {
       case 38:
         if(this.state.direction !== 'DOWN' && !this.state.pause) {
           this.setState({direction: 'UP'});
@@ -183,12 +188,15 @@ class App extends Component {
       console.log('GAME OVER')
     }
     return (
-      <div className="game-container">
-        { this.state.gameOver ? <GameOver startNewGame={(e) => this.startNewGame(e)} problem={this.state.problem} length={this.state.snakeDots.length} /> : null }
-      <div className="game-area">
-        <Snake snakeDots = {this.state.snakeDots}/>
-        <Food dot={this.state.food} />
-      </div>
+      <div>
+        { this.state.gameOver ? <GameOver startNewGame={(e) => this.startNewGame(e)} problem={this.state.problem} length={this.state.snakeDots.length - 3} /> : null }
+        <div className="game-container">
+          <div className="game-area">
+            <Snake snakeDots = {this.state.snakeDots}/>
+            <Food dot={this.state.food} />
+          </div>
+        </div>
+        <ArrowButtons setDirection={(keycode) => this.setDirection(keycode)} />
       </div>
     );
   }

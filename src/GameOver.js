@@ -5,8 +5,10 @@ const GameOver = (props) => {
     return (
         <div className="game-over-container">
             <h1>Game Over...</h1>
-            <p>Your space snake <b>{props.problem}</b>! Length: <b>{props.length}</b></p>
-            <button onClick={(e) => props.startNewGame(e)}>New Game</button>
+            <p>Your space snake <b>{props.problem}!</b><br/>
+            <span>{props.length}</span> energy block{props.length === 1 ? '' : 's'} collected</p>
+            
+            <button className="new-game-button" onClick={(e) => props.startNewGame(e)}>New Game</button>
         </div>
     )
 }
