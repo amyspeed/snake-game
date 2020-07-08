@@ -13,7 +13,7 @@ const ArrowButtons = (props) => {
                 <button className="arrow-buttons" onClick={() => props.setDirection(39)}>&#8594;</button>
             </div>
             <div className="arrow-container">
-                <button className="new-game-button" onClick={() => props.setDirection(32)}>Pause</button>
+                <button className="new-game-button" onClick={() => props.setDirection(32)}>{ props.pause ? 'Resume' : 'Pause'}</button>
             </div>
         </div>
     )

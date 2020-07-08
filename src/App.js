@@ -196,7 +196,7 @@ class App extends Component {
             <Food dot={this.state.food} />
           </div>
         </div>
-        <ArrowButtons setDirection={(keycode) => this.setDirection(keycode)} />
+        <ArrowButtons setDirection={(keycode) => this.setDirection(keycode)} pause={this.state.pause} />
       </div>
     );
   }
