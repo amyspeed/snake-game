@@ -76,6 +76,8 @@ class App extends Component {
           this.setState({ pause: true });
         }
         break;
+      default:
+        // do nothing
     }
   }
 
@@ -96,6 +98,9 @@ class App extends Component {
         break;
       case 'UP':
         head = [head[0], head[1] - 5];
+        break;
+      default:
+        // do nothing
     }
     dots.push(head);
     dots.shift();
