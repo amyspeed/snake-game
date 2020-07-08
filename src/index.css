@@ -1,9 +1,25 @@
+html {
+  background-image: url('galaxy.jpg');
+  background-size: cover;
+}
+
 .game-container {
   position: relative;
   width: 90%;
   padding-bottom: 90%;
-  border: 2px solid #000000;
+  border: 5px ridge #0077ffd2;
+  background-color: #000000ea;
+  /* background-image: url('stars.jpg');
+  background-size: cover; */
   margin: 5%;
+}
+
+@media only screen and (min-width: 800px) {
+  .game-container {
+    width: 600px;
+    padding-bottom: 600px;
+    margin: auto;
+  }
 }
 
 .game-area {
@@ -18,19 +34,39 @@
   position: absolute;
   width: 5%;
   height: 5%;
-  background-color: #000000;
-  border: 1px solid #000000;
-  border-radius: 50%;
-  box-shadow: 2px 5px 10px rgba(0,0,0,0.3);
+  background: radial-gradient(#FFFFFF, rgb(255, 0, 234));
+  border: 1px solid rgb(255, 0, 234);
+  border-radius: 10%;
+  /* background-image: url('gem.png');
+  background-size: cover; */
+  /* box-shadow: 2px 5px 10px rgba(0,0,0,0.3); */
 }
 
 .snake-food {
   position: absolute;
   width: 5%;
   height: 5%;
-  background-color: #fc0000;
-  border: 1px solid #fc0000;
-  box-shadow: 2px 5px 10px rgba(0,0,0,0.3);
+  /* background-image: url('lightning.png');
+  background-size: cover; */
+  background: radial-gradient(#FFFFFF, rgb(255, 217, 0));
+  border: 1px solid rgb(255, 217, 0);
+  box-shadow: 1px 1px 50px 10px rgb(255, 255, 255);
   border-radius: 50%;
   z-index: 1;
+}
+
+.game-over-container {
+  position: fixed;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.74);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  transition: all ease-in-out 2s;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
