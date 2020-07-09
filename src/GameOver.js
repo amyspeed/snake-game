@@ -3,7 +3,7 @@ import React from 'react';
 const GameOver = (props) => {
 
     return (
-        <div className="game-over-container">
+        <div className="overlay-container">
             <h1>Game Over...</h1>
             <p>Your space snake <b>{props.problem}!</b><br/>
             <span>{props.length}</span> energy block{props.length === 1 ? '' : 's'} collected</p>

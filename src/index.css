@@ -56,7 +56,7 @@ html {
   z-index: 1;
 }
 
-.game-over-container {
+.overlay-container {
   position: fixed;
   z-index: 3;
   background-color: rgba(0, 0, 0, 0.842);
@@ -85,6 +85,8 @@ html {
 h1 {
   color: rgb(255, 240, 154);
   font-size: 40px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 span {
@@ -95,6 +97,15 @@ span {
 
 p {
   font-size: 25px;
+}
+
+.instructions {
+  font-size: 16px;
+  line-height: 190%;
+  max-width: 500px;
+  text-align: left;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 button {

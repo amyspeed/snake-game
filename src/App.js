@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Welcome from './Welcome';
 import Snake from './Snake';
 import Food from './Food';
 import GameOver from './GameOver';
@@ -13,6 +14,7 @@ const getRandomCoordinates = () => {
 }
 
 const initialState = {
+  welcome: false,
   snakeDots: [
     [0, 0],
     [5, 0],
@@ -33,7 +35,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.go();
+    // this.go();
+    this.setState({ welcome: true })
     document.onkeydown = this.onkeydown;
   }
 
@@ -41,6 +44,11 @@ class App extends Component {
     this.checkIfOutOfBorders();
     this.checkIfCollapsed();
     this.checkIfEat();
+  }
+
+  startNewGame(e) {
+    e.preventDefault();
+    this.setState(initialState, this.go);
   }
 
   go() {
@@ -178,16 +186,12 @@ class App extends Component {
     clearInterval(this.intervalID);
   }
 
-  startNewGame(e) {
-    e.preventDefault();
-    this.setState(initialState, this.go);
-  }
-
   render() {
     if (this.state.gameOver) {
     }
     return (
       <div>
+        { this.state.welcome ? <Welcome startNewGame={(e) => this.startNewGame(e)} /> : null }
         { this.state.gameOver ? <GameOver startNewGame={(e) => this.startNewGame(e)} problem={this.state.problem} length={this.state.snakeDots.length - 3} /> : null }
         <div className="game-container">
           <div className="game-area">
