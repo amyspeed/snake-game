@@ -33,7 +33,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.intervalID = setInterval(this.moveSnake, this.state.speed);
+    this.go();
     document.onkeydown = this.onkeydown;
   }
 
@@ -41,6 +41,11 @@ class App extends Component {
     this.checkIfOutOfBorders();
     this.checkIfCollapsed();
     this.checkIfEat();
+  }
+
+  go() {
+    console.log(this.state.speed)
+    this.intervalID = setInterval(this.moveSnake, this.state.speed);
   }
 
   onkeydown = (e) => {
@@ -73,7 +78,7 @@ class App extends Component {
       case 32:
         console.log(this.state.pause);
         if(this.state.pause) {
-          this.intervalID = setInterval(this.moveSnake, this.state.speed);
+          this.go();
           this.setState({ pause: false });
         }
         else {
@@ -167,8 +172,6 @@ class App extends Component {
   }
 
   gameOver() {
-    // alert(`Game over. Snake length is ${this.state.snakeDots.length}`);
-    // this.setState(initialState);
     this.setState({ gameOver : true })
     this.pause();
   }
@@ -179,8 +182,7 @@ class App extends Component {
 
   startNewGame(e) {
     e.preventDefault();
-    this.setState(initialState);
-    this.intervalID = setInterval(this.moveSnake, this.state.speed);
+    this.setState(initialState, this.go);
   }
 
   render() {
