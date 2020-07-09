@@ -44,7 +44,6 @@ class App extends Component {
   }
 
   go() {
-    console.log(this.state.speed)
     this.intervalID = setInterval(this.moveSnake, this.state.speed);
   }
 
@@ -76,7 +75,6 @@ class App extends Component {
         }
         break;
       case 32:
-        console.log(this.state.pause);
         if(this.state.pause) {
           this.go();
           this.setState({ pause: false });
@@ -187,7 +185,6 @@ class App extends Component {
 
   render() {
     if (this.state.gameOver) {
-      console.log('GAME OVER')
     }
     return (
       <div>
