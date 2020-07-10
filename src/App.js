@@ -22,7 +22,7 @@ const initialState = {
   ],
   food: getRandomCoordinates(),
   direction: 'RIGHT',
-  speed: 150,
+  speed: 180,
   pause: false,
   gameOver: false,
   problem: ''
