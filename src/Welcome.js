@@ -11,7 +11,7 @@ const Welcome = (props) => {
             </p>
             <p className="instructions">
                 Use your keyboard arrow keys or the provided buttons 
-                to effect your Space Snake's movements. Enjoy!
+                to affect your Space Snake's movements. Enjoy!
             </p>
             
             <button className="new-game-button" onClick={(e) => props.startNewGame(e)}>Start Game</button>
