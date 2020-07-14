@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import Welcome from './Welcome';
+import OverlayScreen from './OverlayScreen';
 import Snake from './Snake';
 import Food from './Food';
-import GameOver from './GameOver';
 import ArrowButtons from './ArrowButtons';
 
 const getRandomCoordinates = () => {
@@ -191,8 +190,16 @@ class App extends Component {
     }
     return (
       <div>
-        { this.state.welcome ? <Welcome startNewGame={(e) => this.startNewGame(e)} /> : null }
-        { this.state.gameOver ? <GameOver startNewGame={(e) => this.startNewGame(e)} problem={this.state.problem} length={this.state.snakeDots.length - 3} /> : null }
+        { this.state.welcome || this.state.gameOver ? 
+          <OverlayScreen 
+            startNewGame={(e) => this.startNewGame(e)}
+            welcome={this.state.welcome}
+            gameOver={this.state.gameOver}
+            problem={this.state.problem}
+            length={this.state.snakeDots.length - 3}
+          /> 
+          : null
+        }
         <div className="game-container">
           <div className="game-area">
             <Snake snakeDots = {this.state.snakeDots}/>
