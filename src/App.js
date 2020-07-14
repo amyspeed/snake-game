@@ -1,8 +1,11 @@
-import React, {Component} from 'react';
-import OverlayScreen from './OverlayScreen';
-import Snake from './Snake';
-import Food from './Food';
-import ArrowButtons from './ArrowButtons';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import OverlayScreen from './components/OverlayScreen';
+import Scores from './components/Scores';
+import Snake from './components/Snake';
+import Food from './components/Food';
+import ArrowButtons from './components/ArrowButtons';
 
 const getRandomCoordinates = () => {
   let min = 1;
@@ -195,6 +198,7 @@ class App extends Component {
             startNewGame={(e) => this.startNewGame(e)}
             welcome={this.state.welcome}
             gameOver={this.state.gameOver}
+            loggedIn={this.props.loggedIn}
             problem={this.state.problem}
             length={this.state.snakeDots.length - 3}
           /> 
@@ -202,6 +206,7 @@ class App extends Component {
         }
         <div className="game-container">
           <div className="game-area">
+            { this.props.loggedIn ? <Scores /> : null }
             <Snake snakeDots = {this.state.snakeDots}/>
             <Food dot={this.state.food} />
           </div>
@@ -212,4 +217,9 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  hasAuthToken: state.auth.authToken !== null,
+  loggedIn: state.auth.currentUser !== null
+});
+
+export default connect(mapStateToProps)(App);

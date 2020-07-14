@@ -11,14 +11,17 @@ const OverlayScreen = (props) => {
     return (
         <div className="overlay-container">
             { showSignIn ? 
-                <SignIn />
+                <SignIn handleShowSignIn={(data)=> handleShowSignIn(data)}  />
                 : 
                 <div>
                     { props.welcome ? <Welcome startNewGame={(e) => props.startNewGame(e)} /> : null }
                     { props.gameOver ? <Gameover startNewGame={(e) => props.startNewGame(e)} problem={props.problem} length={props.length} /> : null }
                 </div>
             }
-            <p className="sign-in-link" onClick={() => handleShowSignIn(!showSignIn)}>{ showSignIn ? 'instructions' : 'Sign In' }</p>
+            { !props.loggedIn ?
+                <p className="sign-in-link" onClick={() => handleShowSignIn(!showSignIn)}>{ showSignIn ? 'Cancel' : 'Sign In' }</p>
+                : null
+            }
         </div>
     )
 }
