@@ -99,6 +99,7 @@ p {
   font-size: 25px;
 }
 
+
 .instructions {
   font-size: 16px;
   line-height: 190%;
@@ -108,7 +109,8 @@ p {
   margin-right: 30px;
 }
 
-button {
+button, .button {
+  cursor: pointer;
   background: linear-gradient(45deg, rgb(194, 0, 178), rgb(0, 82, 175));
   color: white;
   border-radius: 5px;
@@ -121,6 +123,15 @@ button {
   height: 50px;
   margin-top: 25px;
   width: 250px;
+}
+
+.sign-in-link {
+  color: rgb(255, 0, 234);
+  cursor: pointer;
+}
+
+.sign-in-link:hover, .sign-in-link:focus {
+  color: white;
 }
 
 .button-container {
@@ -151,4 +162,31 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+
+/*Mobile defaults */
+.col-6 {
+  width: 100%;
+  margin: 2%;
+}
+
+form {
+  width: 100%;
+}
+
+input {
+  width: 100%;
+}
+
+
+@media only screen and (max-width: 568px) {
+  .row {
+    display: grid;
+  }
 }
