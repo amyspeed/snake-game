@@ -27,7 +27,7 @@ const OverlayScreen = (props) => {
                 </div>
             }
             { !props.loggedIn ?
-                <p className="sign-in-link" onClick={() => handleShowSignIn(!showSignIn)}>{ showSignIn ? 'Cancel' : 'Sign In' }</p>
+                <p className="sign-in-link" onClick={() => handleShowSignIn(!showSignIn)}>{ showSignIn ? 'Cancel' : 'Sign in to Save Scores' }</p>
                 : <p className="sign-in-link" onClick={(e) => handleLogOut(e)}>Log Out</p>
             }
         </div>
