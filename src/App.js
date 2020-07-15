@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchScores } from './actions/scores';
 
 import OverlayScreen from './components/OverlayScreen';
 import Scores from './components/Scores';
@@ -48,8 +49,8 @@ class App extends Component {
     this.checkIfEat();
   }
 
-  startNewGame(e) {
-    e.preventDefault();
+  startNewGame() {
+    // e.preventDefault();
     this.setState(initialState, this.go);
   }
 
@@ -189,14 +190,16 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.gameOver) {
-    }
+    // if (this.props.auth) {
+    //   console.log(this.props.auth);
+    // }
     return (
       <div>
         { this.state.welcome || this.state.gameOver ? 
           <OverlayScreen 
-            startNewGame={(e) => this.startNewGame(e)}
+            startNewGame={() => this.startNewGame()}
             welcome={this.state.welcome}
+            firstName={ this.props.currentUser ? this.props.currentUser.firstName : false }
             gameOver={this.state.gameOver}
             loggedIn={this.props.loggedIn}
             problem={this.state.problem}
@@ -204,9 +207,9 @@ class App extends Component {
           /> 
           : null
         }
+        <Scores currentUser={this.props.currentUser} length={this.state.snakeDots.length - 3} loggedIn={this.props.loggedIn} />
         <div className="game-container">
           <div className="game-area">
-            { this.props.loggedIn ? <Scores /> : null }
             <Snake snakeDots = {this.state.snakeDots}/>
             <Food dot={this.state.food} />
           </div>
@@ -219,7 +222,9 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   hasAuthToken: state.auth.authToken !== null,
-  loggedIn: state.auth.currentUser !== null
+  loggedIn: state.auth.currentUser !== null,
+  auth: state.auth,
+  currentUser: state.auth.currentUser ? state.auth.currentUser : false
 });
 
 export default connect(mapStateToProps)(App);

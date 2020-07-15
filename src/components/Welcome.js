@@ -4,7 +4,7 @@ const Welcome = (props) => {
 
     return (
         <div>
-            <h1>Welcome to Space Snake!</h1>
+            <h1>Welcome{props.firstName ? `, ${props.firstName}` : ' to Space Snake'}!</h1>
                 <p className="instructions">Your job is to collect as many 
                     energy blocks as you can without crashing or 
                     collapsing.
@@ -14,7 +14,7 @@ const Welcome = (props) => {
                     to affect your Space Snake's movements. Enjoy!
                 </p>
             
-                <button className="new-game-button" onClick={(e) => props.startNewGame(e)}>Start Game</button>
+                <button className="new-game-button" onClick={() => props.startNewGame()}>Start Game</button>
             </div>
     )
 }

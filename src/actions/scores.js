@@ -20,6 +20,7 @@ export const fetchScoresError = error => ({
 });
 
 export const fetchScores = () => (dispatch, getState) => {
+    dispatch(fetchScoresById());
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/users/scores`, {
         method: 'GET',
@@ -33,8 +34,9 @@ export const fetchScores = () => (dispatch, getState) => {
         });
 };
 
-export const fetchScoresById = (userId) => (dispatch, getState) => {
+export const fetchScoresById = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
+    const userId = getState().auth.currentUser.id;
     return fetch(`${API_BASE_URL}/users/scores/${userId}`, {
         method: 'GET',
         headers: { Authorization: `Bearer ${authToken}`}
@@ -47,8 +49,10 @@ export const fetchScoresById = (userId) => (dispatch, getState) => {
         });
 }
 
-export const PutScoresByUserId = (userId, putData) => (dispatch, getState) => {
+export const PutScoresByUserId = (putData) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
+    const userId = getState().auth.currentUser.id;
+    console.log(userId)
     return fetch(`${API_BASE_URL}/users/scores/${userId}`, {
         method: 'PUT',
         headers: { 
@@ -58,9 +62,9 @@ export const PutScoresByUserId = (userId, putData) => (dispatch, getState) => {
         body: JSON.stringify(putData)
     })
         .then(res => normalizeResponseErrors(res))
-        .then(res => res.json())
-        .then((userScores) => dispatch(fetchScoresSuccess(userScores)))
+        .then(() => dispatch(fetchScores()))
         .catch(err => {
+            console.log(err)
             dispatch(fetchScoresError(err));
         });
 };

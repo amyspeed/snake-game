@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   background-image: url('images/galaxy.jpg');
   background-size: cover;
@@ -10,9 +14,9 @@ html {
   padding-bottom: 90%;
   border: 5px ridge #0077ffd2;
   background-color: #000000ea;
-  /* background-image: url('stars.jpg');
-  background-size: cover; */
-  margin: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
 }
 
 @media only screen and (min-width: 800px) {
@@ -60,15 +64,13 @@ html {
   position: fixed;
   z-index: 3;
   background-color: rgba(0, 0, 0, 0.842);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding: 10%;
   top: 0;
   left: 0;
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   text-align: center;
   animation: fadeIn ease 1s;
 }
@@ -84,29 +86,31 @@ html {
 
 h1 {
   color: rgb(255, 240, 154);
-  font-size: 40px;
+  font-size: 30px;
   margin-left: 30px;
   margin-right: 30px;
 }
 
 span {
   color: rgb(255, 0, 234);
-  font-size: 28px;
   font-weight: bold;
 }
 
 p {
-  font-size: 25px;
+  font-size: 16px;
+  color: white;
+  line-height: 150%;
 }
 
 
 .instructions {
   font-size: 16px;
   line-height: 190%;
+  width: 100%;
   max-width: 500px;
   text-align: left;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button, .button {
@@ -114,9 +118,10 @@ button, .button {
   background: linear-gradient(45deg, rgb(194, 0, 178), rgb(0, 82, 175));
   color: white;
   border-radius: 5px;
-  font-size: 30px;
+  font-size: 22px;
   border: 2px solid rgba(255, 255, 255, 0.5);
-  margin: 2px;
+  max-width: 100%;
+  transition: all ease-in-out 0.1s;
 }
 
 .new-game-button {
@@ -128,6 +133,8 @@ button, .button {
 .sign-in-link {
   color: rgb(255, 0, 234);
   cursor: pointer;
+  transition: all ease-in-out 0.1s;
+
 }
 
 .sign-in-link:hover, .sign-in-link:focus {
@@ -159,34 +166,106 @@ button, .button {
 .arrow-buttons {
   width: 50px;
   height: 50px;
+  margin: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .row {
-  display: flex;
-  flex-direction: row;
+  margin: auto;
+  width: 100%;
+}
+
+/* Clearfix*/
+.row::before, 
+.row::after {
+  display: table;
+  content: '';
+}
+
+.row::after {
+  clear: both;
 }
 
 
 /*Mobile defaults */
 .col-6 {
+  float: left;
   width: 100%;
-  margin: 2%;
+  padding: 2%;
+}
+
+.col-6-b {
+  float: left;
+  width: 50%;
+  padding: 2%;
+}
+
+.score-row {
+  max-width: 600px;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.box {
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  box-shadow: 5px 10px 55px 5px rgba(255, 254, 246, 0.589);
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 5px;
 }
 
 form {
   width: 100%;
+  font-size: 16px;
 }
 
 input {
+  margin-bottom: 10px;
+}
+
+input[type=text] {
   width: 100%;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.button {
+  width: 100%;
+  height: 50px;
+  margin-top: 10px;
+}
+
+legend {
+  color: rgb(255, 240, 154);
+  text-align: left;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+label {
+  text-align: left;
 }
 
 
-@media only screen and (max-width: 568px) {
-  .row {
-    display: grid;
+@media only screen and (min-width: 568px) {
+  .col-6 {
+    width: 50%;
   }
+  h1 {
+    font-size: 40px;
+  }
+  p {
+    font-size: 20px;
+  }
+}
+
+.button:hover, button:hover, .sign-in-link:hover {
+  transform: translate(0, -1.5px) scale(1.01)
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { registerUser } from './../actions/users';
+import { login } from './../actions/auth';
 
 const NewUser = (props) => {
 
@@ -12,15 +13,17 @@ const NewUser = (props) => {
         const user={};
         user.firstName='Test';
         user.lastName='Testlast';
-        user.username='TestTest';
+        user.username='TestTest5';
         user.password='Password123';
         user.score='50';
 
-        props.dispatch(registerUser(user))
+        return props
+            .dispatch(registerUser(user))
+            .then(() => props.dispatch(login(user.username, user.password)));
     }
     
     return (
-        <div className="col-6">
+        <div className="box">
             <form onSubmit={(e) => handleRegister(e)}>
                 <legend>New Player</legend>
                 <label htmlFor="firstName">First Name</label><br/>
@@ -41,7 +44,8 @@ const NewUser = (props) => {
 }
 
 const mapStateToProps = state => ({
-
+    loggedIn: state.auth.currentUser !== null,
+    error: state.auth.error
 });
 
 export default connect(mapStateToProps)(NewUser);
