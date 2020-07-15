@@ -4,28 +4,35 @@ import { PutScoresByUserId } from './../actions/scores';
 
 const GameOver = (props) => {
 
-    const [scoresSaved, handleSave] = useState(false);
-    const [prevScore, savePrevScore] = useState(0);
-
     const saveScore = (e) => {
         e.preventDefault();
-        console.log(scoresSaved);
-        if(!scoresSaved) {
-            savePrevScore(props.score);
-            const newScore = props.length;
-            handleSave(true);
-
-            if (prevScore < newScore) {
-                const putData = {
-                    score: props.length
-                }
-                props.dispatch(PutScoresByUserId(putData));
-                
+        if (props.score < props.length) {
+            const putData = {
+                score: props.length
             }
+            props.dispatch(PutScoresByUserId(putData))
+            .then(() => window.location.reload());  
         }
     }
 
-    console.log(prevScore)
+    const handleNewGameClicked = (e) => {
+        e.preventDefault();
+        if (props.loggedIn) {;
+            if (props.score < props.length) {
+                const putData = {
+                    score: props.length
+                }
+                props.dispatch(PutScoresByUserId(putData))
+                .then(() => props.startNewGame())
+            }
+            else {
+                props.startNewGame()
+            }
+        }
+        else {
+            props.startNewGame()
+        }
+    }
 
 
     return (
@@ -35,14 +42,12 @@ const GameOver = (props) => {
             <span>{props.length}</span> energy block{props.length === 1 ? '' : 's'} collected</p>
 
             { props.loggedIn ?
-                ((prevScore ? prevScore : props.score) <  props.length) ? 
-                    !scoresSaved ? 
-                        <p onClick={(e) => saveScore(e)} className="sign-in-link">Save this new high score!</p>
-                        : <p>New high score saved!</p>
+                ((props.score) <  props.length)
+                    ? <p onClick={(e) => saveScore(e)} className="sign-in-link">Save this new high score and Exit!</p>
                     : <p>You did not exceed your high score of <span>{props.score}</span></p>
              : null }
             
-            <button className="new-game-button" onClick={(e) => props.startNewGame(e)}>New Game</button>
+            <button className="new-game-button" onClick={(e) => handleNewGameClicked(e)}>New Game</button>
         </div>
     )
 }

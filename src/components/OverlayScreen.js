@@ -23,7 +23,7 @@ const OverlayScreen = (props) => {
                 : 
                 <div>
                     { props.welcome ? <Welcome startNewGame={() => props.startNewGame()} firstName={props.firstName} /> : null }
-                    { props.gameOver ? <Gameover startNewGame={() => props.startNewGame()} problem={props.problem} length={props.length} /> : null }
+                    { props.gameOver ? <Gameover startNewGame={() => props.startNewGame()} problem={props.problem} length={props.length} exit={() => props.exit()} /> : null }
                 </div>
             }
             { !props.loggedIn ?

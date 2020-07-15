@@ -188,6 +188,11 @@ class App extends Component {
     clearInterval(this.intervalID);
   }
 
+  exit() {
+    console.log('exit App')
+    window.location.reload();
+  }
+
   render() {
     // if (this.props.auth) {
     //   console.log(this.props.auth);
@@ -203,6 +208,7 @@ class App extends Component {
             loggedIn={this.props.loggedIn}
             problem={this.state.problem}
             length={this.state.snakeDots.length - 3}
+            exit={() => this.exit()}
           /> 
           : null
         }
