@@ -1,31 +1,27 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { login } from './../actions/auth';
 
 const ExistingUser = (props) => {
 
-    const [loading, handleLoading] = useState(false)
+    const [loading, handleLoading] = useState(false);
+    const { register, handleSubmit } = useForm();
 
-    const handleSignIn = (e) => {
+    const onSubmit = (data) => {
         handleLoading(true);
-        e.preventDefault();
-        console.log('loading');
-
-        const username='TestTest3';
-        const password='Password123';
-
-
-        props.dispatch(login(username, password));
+        console.log(data);
+        props.dispatch(login(data));
     }
 
     return (
         <div className="box">
-            <form onSubmit={(e) => handleSignIn(e)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <legend>Returning Player</legend>
                 <label htmlFor="username">Username</label><br/>
-                <input type="text" name="username" id="username" /><br/>
+                <input type="text" name="username" id="username" ref={register} /><br/>
                 <label htmlFor="password">Password</label><br/>
-                <input type="text" name="password" id="password" /><br/>
+                <input type="text" name="password" id="password" ref={register} /><br/>
                 <input type="submit" className="button" value={ loading && !props.error ? 'loading...' : 'Sign In' } />
             </form>
             <p><span>{ props.error ? props.error : null }</span></p>

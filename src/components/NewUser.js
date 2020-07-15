@@ -1,42 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { registerUser } from './../actions/users';
 import { login } from './../actions/auth';
 
 const NewUser = (props) => {
 
-    const handleRegister = (e) => {
-        e.preventDefault()
-        console.log('submit');
-        // props.handleShowSignIn(false);
+    const [loading, handleLoading] = useState(false);
+    const { register, handleSubmit } = useForm();
 
-        const user={};
-        user.firstName='Test';
-        user.lastName='Testlast';
-        user.username='TestTest5';
-        user.password='Password123';
-        user.score='50';
+    const onSubmit = (data) => {
+        handleLoading(true);
+        console.log(data);
 
         return props
-            .dispatch(registerUser(user))
-            .then(() => props.dispatch(login(user.username, user.password)));
+            .dispatch(registerUser(data))
+            .then(() => props.dispatch(login(data)));
     }
     
     return (
         <div className="box">
-            <form onSubmit={(e) => handleRegister(e)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <legend>New Player</legend>
                 <label htmlFor="firstName">First Name</label><br/>
-                <input type="text" name="firstName" id="firstName" /><br/>
+                <input type="text" name="firstName" id="firstName" ref={register} /><br/>
                 <label htmlFor="lastName">Last Name</label><br/>
-                <input type="text" name="lastName" id="lastName" /><br/>
+                <input type="text" name="lastName" id="lastName" ref={register} /><br/>
                 <label htmlFor="username">Username</label><br/>
-                <input type="text" name="username" id="username" /><br/>
+                <input type="text" name="username" id="username" ref={register} /><br/>
                 <label htmlFor="password">Password</label><br/>
-                <input type="text" name="password" id="password" /><br/>
+                <input type="text" name="password" id="password" ref={register} /><br/>
                 <label htmlFor="password2">Confirm Password</label><br/>
                 <input type="text" name="password2" id="password2" /><br/>
-                <input type="submit" className="button" />
+                <input type="submit" className="button" value={loading ? 'Loading...' : 'Register'} />
             </form>
         </div>
     )

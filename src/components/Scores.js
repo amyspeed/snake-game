@@ -12,10 +12,17 @@ const Scores = (props) => {
             const sorted = [].slice.call(userObj).sort((a, b) => ( b.score > a.score) ? 1 : -1)
             console.log(sorted);
 
-            return (
-                <p>{sorted[0].score} {sorted[0].username}<br/>
-                    {sorted[1].score} {sorted[1].username}<br/>
-                    {sorted[2].score} {sorted[2].username}</p>)
+            let scoreList = []
+            for (let i=0; i < sorted.length && i < 3; i++) {
+                scoreList.push(<span index={i} style={{ color: 'white', fontWeight: 'normal'}}>{sorted[i].score} {sorted[i].username}<br/></span>)
+            }
+
+            return scoreList;
+
+            // return (
+            //     <p>{sorted[0].score} {sorted[0].username}<br/>
+            //         {sorted[1].score} {sorted[1].username}<br/>
+            //         {sorted[2].score} {sorted[2].username}</p>)
         }
     }
 
@@ -26,7 +33,7 @@ const Scores = (props) => {
                     <p><span>Top Scores:</span></p>
                 </div>
                 <div className="col-6-b">
-                    {sortScores()}
+                    <p>{sortScores()}</p>
                 </div>
                 <div className="col-6-b">
                     <p><span>Your Top Score</span><br/>

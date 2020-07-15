@@ -41,16 +41,13 @@ const storeAuthInfo = (authToken, dispatch) => {
     dispatch(fetchScores());
 };
 
-export const login = (username, password) => dispatch => {
+export const login = (data) => dispatch => {
     dispatch(authRequest());
     return (
         fetch(`${API_BASE_URL}/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                username,
-                password
-            })
+            body: JSON.stringify(data)
         })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
