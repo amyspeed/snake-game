@@ -14,15 +14,10 @@ const Scores = (props) => {
 
             let scoreList = []
             for (let i=0; i < sorted.length && i < 3; i++) {
-                scoreList.push(<span index={i} style={{ color: 'white', fontWeight: 'normal'}}>{sorted[i].score} {sorted[i].username}<br/></span>)
+                scoreList.push(<span key={i} style={{ color: 'white', fontWeight: 'normal'}}>{sorted[i].score} {sorted[i].username}<br/></span>)
             }
 
             return scoreList;
-
-            // return (
-            //     <p>{sorted[0].score} {sorted[0].username}<br/>
-            //         {sorted[1].score} {sorted[1].username}<br/>
-            //         {sorted[2].score} {sorted[2].username}</p>)
         }
     }
 

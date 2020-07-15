@@ -1,29 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { PutScoresByUserId } from './../actions/scores';
 
 const GameOver = (props) => {
 
-    console.log(props.score)
+    const [scoresSaved, handleSave] = useState(false);
+    const [prevScore, savePrevScore] = useState(0);
 
-    const handleNewGameClicked = (e) => {
+    const saveScore = (e) => {
         e.preventDefault();
-        if (props.loggedIn) {
-            if (props.score < props.length) {
+        console.log(scoresSaved);
+        if(!scoresSaved) {
+            savePrevScore(props.score);
+            const newScore = props.length;
+            handleSave(true);
+
+            if (prevScore < newScore) {
                 const putData = {
                     score: props.length
                 }
-                props.dispatch(PutScoresByUserId(putData))
-                .then(() => props.startNewGame(e))
+                props.dispatch(PutScoresByUserId(putData));
+                
             }
-            else {
-                props.startNewGame(e)
-            }
-        }
-        else {
-            props.startNewGame(e)
         }
     }
+
+    console.log(prevScore)
+
 
     return (
         <div>
@@ -32,10 +35,14 @@ const GameOver = (props) => {
             <span>{props.length}</span> energy block{props.length === 1 ? '' : 's'} collected</p>
 
             { props.loggedIn ?
-                props.score < props.length ? <p>This is a new high score!</p> : <p>You did not exceeded your high score of <span>{props.score}</span></p>
+                ((prevScore ? prevScore : props.score) <  props.length) ? 
+                    !scoresSaved ? 
+                        <p onClick={(e) => saveScore(e)} className="sign-in-link">Save this new high score!</p>
+                        : <p>New high score saved!</p>
+                    : <p>You did not exceed your high score of <span>{props.score}</span></p>
              : null }
             
-            <button className="new-game-button" onClick={(e) => handleNewGameClicked(e)}>New Game</button>
+            <button className="new-game-button" onClick={(e) => props.startNewGame(e)}>New Game</button>
         </div>
     )
 }
