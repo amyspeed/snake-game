@@ -4,6 +4,24 @@
 
 [See Server Repo Here: github.com/amyspeed/Space-Snake-API](https://github.com/amyspeed/Space-Snake-API)
 
-![Game](/src/screenshot2.png)
+![Game](/src/images/screenshot2.png)
 
-![Game Over](/src/screenshot1.png)
+![Game Over](/src/images/screenshot1.png)
+
+## Technologies
+
+* React
+* React Hooks
+* React Hook Form
+* Netlify
+* CSS
+* Mobile first media queries
+* JavaScript
+* Node.js
+* MongoDB
+* MongoDB Atlas
+* Mocha
+* Chai
+* Travis-ci
+* Heroku
+

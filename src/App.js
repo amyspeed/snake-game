@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchScores } from './actions/scores';
 
 import OverlayScreen from './components/OverlayScreen';
 import Scores from './components/Scores';

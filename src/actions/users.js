@@ -11,6 +11,7 @@ export const registerUser = user => dispatch => {
         .then(res => res.json())
         .catch(err => {
             const { reason, message, location } = err;
+            console.log(message, location)
             if (reason === 'ValidationError') {
                 return Promise.reject(err);
             }
